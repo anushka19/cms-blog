@@ -1,6 +1,21 @@
-<?php ob_start(); //output buffering we need it when we are re directing users or code, helps to buffer of requests in scripts or at header ?> 
 <?php include "../includes/db.php"; ?>
 <?php include "functions.php"; ?>
+<?php ob_start(); //output buffering we need it when we are re directing users or code, helps to buffer of requests in scripts or at header ?> 
+
+<?php session_start(); ?>
+<?php
+
+if(!isset($_SESSION['user_role'])){
+
+    
+    header("Location: ../index.php");
+
+
+}
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
