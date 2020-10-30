@@ -1,6 +1,32 @@
+<?php
+
+if(isset($_POST['checkboxBoxArray'])){
+
+    echo "receving data";
+}
+
+
+?>
+
+<form action="" method="post">
 <table class="table table-bordered table-hover">
+    <div id="bulkOptionContainer" class="form-group col-xs-4">
+
+        <select class="form-control" name="" id="">
+
+            <option value="">Select Options</option>
+            <option value="">Publish</option>
+            <option value="">Draft</option>
+            <option value="">Delete</option>
+        </select>
+
+    </div>
+    <div class="form-group col-xs-4">
+          <input class="btn btn-success" type="submit" name="submit" value="Apply">
+          <a class="btn btn-primary" href="add_post.php">Add New</a>
+      </div>
                             <thead>
-                                
+                                    <th><input id="selectAllBoxes" type="checkbox"></th>
                                     <th>Id</th>
                                     <th>Author</th>
                                     <th>Title</th>
@@ -33,6 +59,11 @@ while($row=mysqli_fetch_assoc($select_posts)){
     $post_date= $row['post_date'];
 
     echo "<tr>";
+    ?>
+
+    <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
+
+    <?php
     echo "<td>$post_id</td>";
     echo "<td>$post_author</td>";
     echo "<td>$post_title</td>";
@@ -84,6 +115,7 @@ while($row=mysqli_fetch_assoc($select_posts)){
                         </tbody>
 
                         </table>
+                        </form>
     
 
 
