@@ -30,20 +30,28 @@ if(isset($_POST['login'])){
 
    $password=crypt($password,$db_user_password);//converting back
 
-    if($username === $db_username && $password === $db_user_password){
+   if ($username === $db_username && $password === $db_user_password) {
+ 
+ 
+    $_SESSION['username'] = $db_username;
 
-        $_SESSION['username']=$db_username;
-        $_SESSION['firstname']=$db_user_firstname;
-        $_SESSION['lastname']=$db_user_lastname;
-        $_SESSION['user_role']=$db_user_role;
+    $_SESSION['firstname'] = $db_user_firstname;
 
-        header("Location: ../admin/index.php");
-        
-    } 
-    else{
+    $_SESSION['lastname'] = $db_user_lastname;
 
-        header("Location: ../index.php");
-    }
+    $_SESSION['user_role'] = $db_user_role;
+
+
+    header("Location: ../admin");
+
+
+} else {
+
+    header("Location: ../index.php");
+
+
+}
+
 
 }
 
