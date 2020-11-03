@@ -18,7 +18,7 @@ if(isset($_SESSION['username'])){
 
         $user_email= $row['user_email'];
         $user_image= $row['user_image'];
-        $user_role= $row['user_role'];
+       // $user_role= $row['user_role'];
 
     }
 
@@ -37,7 +37,7 @@ if(isset($_POST['edit_user'])) {
     //$user_id = $_POST['user_id'];
     $user_firstname= $_POST['user_firstname'];
     $user_lastname= $_POST['user_lastname'];
-    $user_role= $_POST['user_role'];
+    //$user_role= $_POST['user_role'];
 
    // $post_image= $_FILES['image']['name'];
     //$post_image_temp=$_FILES['image']['tmp_name'];
@@ -56,7 +56,7 @@ if(isset($_POST['edit_user'])) {
 $query="UPDATE users SET ";
 $query .="user_firstname= '{$user_firstname}', ";
 $query .="user_lastname= '{$user_lastname}', ";
-$query .="user_role= '{$user_role}', ";
+//$query .="user_role= '{$user_role}', ";
 $query .="username= '{$username}', ";
 $query .="user_email= '{$user_email}', ";
 $query .="user_password= '{$user_password}' ";
@@ -101,24 +101,24 @@ confirmQuery($update_user_query);
           <input type="text" value="<?php echo $user_lastname; ?>" class="form-control" name="user_lastname">
       </div>
 
-       <div class="form-group">
+    <!-- <div class="form-group">
 
     <select name="user_role" id="">
 
 
-    <option value="subscriber"><?php echo $user_role; ?></option>
+    <option value="subscriber"><?php //echo $user_role; ?></option>
 
     <?php
 
-    if($user_role=='admin'){
+    // if($user_role=='admin'){
 
-        echo "<option value='subscriber'>subscriber</option>";
+    //     echo "<option value='subscriber'>subscriber</option>";
 
-    }
-    else{
+    // }
+    // else{
 
-        echo "<option value='admin'>Admin</option>";
-    }
+    //     echo "<option value='admin'>Admin</option>";
+    // }
 
 
 
@@ -127,7 +127,7 @@ confirmQuery($update_user_query);
     
 
     </select> 
-    </div>
+    </div> -->
            
       <div class="form-group">
          <label for="username">Username</label>
@@ -135,14 +135,14 @@ confirmQuery($update_user_query);
       </div>
       
       <div class="form-group">
-         <label for="post_content">Email</label>
+         <label for="post_email">Email</label>
          <input type="email" value="<?php echo $user_email; ?>" class="form-control" name="user_email">
          </textarea>
       </div>
 
       <div class="form-group">
-         <label for="post_content">Password</label>
-         <input type="password" value="<?php echo $user_password; ?>" class="form-control" name="user_password">
+         <label for="post_password">Password</label>
+         <input autocomplete="off" type="password" class="form-control" name="user_password">
          </textarea>
       </div>
       

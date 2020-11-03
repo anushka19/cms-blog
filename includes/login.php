@@ -28,9 +28,9 @@ if(isset($_POST['login'])){
 
     }
 
-   $password=crypt($password,$db_user_password);//converting back
+  // $password=crypt($password,$db_user_password);//converting back
 
-   if ($username === $db_username && $password === $db_user_password) {
+   if (password_verify($password,$db_user_password)) {
  
  
     $_SESSION['username'] = $db_username;

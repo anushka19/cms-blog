@@ -1,11 +1,11 @@
 
 $(document).ready(function(){
+    
     ClassicEditor
-        .create( document.querySelector( '#body' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-
+    .create( document.querySelector( '#body' ) )
+    .catch( error => {
+        console.error( error );
+    } );
 
 
     //REST OF THE CODE
@@ -32,4 +32,18 @@ $(document).ready(function(){
         });
 });
 
+//real time refreshing using ajax
+function loadUsersOnline(){
 
+    $.get("functions.php?onlineusers=result",function(data){
+
+        $(".usersonline").text(data);
+    });
+
+}
+
+setInterval(function(){
+
+    loadUsersOnline();
+    
+},500);//500 means every half second

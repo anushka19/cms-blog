@@ -39,6 +39,8 @@ if(isset($_POST['update_post'])){
     $post_tags = $_POST['post_tags'];
 
     move_uploaded_file($post_image_temp,"../images/$post_image");
+
+
     if(empty($post_image)){
         $query="SELECT * FROM posts WHERE post_id=$the_post_id ";
         $select_image=mysqli_query($connection,$query);
@@ -66,7 +68,10 @@ if(isset($_POST['update_post'])){
     $update_query=mysqli_query($connection,$query);
 
     
-    confirmQuery($update_query);
+    if(!$update_query){
+        die("QUERY FAILED" . mysqli_error($connection));
+    }
+
     echo "<p class='bg-success' >Post Updated. <a href='../post.php?p_id={$the_post_id}'>View Post</a> or <a href='posts.php'>Edit More Posts</a></p>";
     //header('Location: view_all_posts.php');
 
@@ -150,9 +155,8 @@ if(isset($_POST['update_post'])){
       </div>
       
       <div class="form-group">
-         <label for="post_content">Post Content</label>
-         
-         <textarea class="form-control "name="post_content" id="" cols="30" rows="10">
+         <label for="post_content">Post Content</label> 
+         <textarea class="form-control "name="post_content" id="body" cols="30" rows="10">
             <?php echo $post_content; ?>
          </textarea>
       </div>

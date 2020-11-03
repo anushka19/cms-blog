@@ -102,7 +102,7 @@ if(isset($_POST['checkBoxArray'])) {
                             <tbody>
 <?php
 
-$query="SELECT * FROM posts ORDER by post_id DESC ";
+$query="SELECT * FROM posts ORDER BY post_id DESC ";
 $select_posts=mysqli_query($connection,$query);
 
 
@@ -190,15 +190,17 @@ if(isset($_GET['delete'])){
     $delete_query=mysqli_query($connection,$query);
     header("Location:posts.php");
 }
+
 if(isset($_GET['reset'])){
 
     $the_post_id=$_GET['reset'];
-    $query="UPDATE posts SET post_views_count=0 WHERE post_id=" . mysqli_real_escape_string($connection,$_GET['reset']) . " ";
+    $query="UPDATE posts SET post_views_count=0 WHERE post_id= $the_post_id ";
     $reset_query=mysqli_query($connection,$query);
     header("Location:posts.php");
 
 
 
 }
+
 
 ?>

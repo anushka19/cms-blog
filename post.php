@@ -67,17 +67,21 @@
                 <hr>
                 
                   
-            <?php } 
+ <?php  } 
         
-        } else{
+    
+    
+    }
+                     
+    else{
 
-            header("Location: index.php");
-            }
+        header("Location: index.php");
+    }
         
         
         
         
-        ?>
+?>
 
                <!-- Blog Comments -->
 
