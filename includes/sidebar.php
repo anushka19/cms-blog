@@ -7,11 +7,11 @@
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
-                    <form action="" method="post">
+                    <form action="" method="post" class="search-form">
                     <div class="input-group">
                         <input name="search" type="text" class="form-control">
                         <span class="input-group-btn">
-                            <button name="submit" class="btn btn-default" type="submit">
+                            <button name="submit" class="icon icon-search btn btn-light" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
                         </button>
                         </span>

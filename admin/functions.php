@@ -2,8 +2,12 @@
 
 function redirect($location){
 
-    return header("Location :" . $location);
+    header("Location :" .$location);
+    exit;
+
 }
+
+function()
 
 
 function escape($string){
@@ -79,17 +83,25 @@ function insert_categories(){
         if($cat_title== "" || empty($cat_title)){
             echo "This field should not be empty";
         }
-        else{
+         else{
+
+
     
-            $query="INSERT INTO categories(cat_title) ";
-            $query .="VALUES ('{$cat_title}') ";
-            $create_category_query=mysqli_query($connection,$query);
+            $stmt=mysqli_prepare($connection,"INSERT INTO categories(cat_title) VALUES (?) ");
+            mysqli_stmt_bind_param($stmt,'s',$cat_title);
+            mysqli_stmt_execute($stmt);
+
+            //$query .="VALUES ('{$cat_title}') ";
+            //$create_category_query=mysqli_query($connection,$query);
     
-            if(!$create_category_query){
+            if(!$stmt){
                 die("QUERY FAILED" . mysqli_error($connection));
             }
              
         }
+        mysqli_stmt_close($stmt);
+
+
     }
 
 

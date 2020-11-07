@@ -47,7 +47,7 @@
             $find_count=mysqli_query($connection,$post_query_count);
             $count=mysqli_num_rows($find_count);
 
-            if($count < 1){
+            if($count === 1){
                 echo"<h2 class='text-center'>No posts available</h2>";
             }else{
 
@@ -81,7 +81,7 @@
                 <h1></h1>
                 <!-- <h1> echo $count; ?></h1> -->
                 <h2>
-                    <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
+                    <a href="post/<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                 </h2>
                 <p class="lead">
                     by <a href="author_posts.php?author=<?php echo $post_author; ?>&p_id=<?php echo $post_id; ?>"><?php echo $post_author; ?></a>
@@ -90,7 +90,7 @@
                 <hr>
 
                 <a href="post.php?p_id=<?php echo $post_id; ?>">
-                <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
+                <img class="img-responsive" src="/cms-blog/images/<?php echo $post_image; ?>" alt="">
                 </a>
                 <hr>
                 <p><?php echo $post_content; ?></p>

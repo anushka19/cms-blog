@@ -5,7 +5,10 @@
 <?php
 if(isset($_GET['edit'])){
     $cat_id=$_GET['edit'];
+    $cat_title=$_GET['edit'];
 
+
+    
     $query="SELECT * FROM categories WHERE cat_id= $cat_id";
     $select_categories_id=mysqli_query($connection,$query);
     
@@ -23,13 +26,19 @@ if(isset($_GET['edit'])){
 ///////UPDATE QUERY
 if(isset($_POST['update_category'])){
 
-    $the_cat_title=$_POST['cat_title'];//same title the_cat_title is taken here
-    $query="UPDATE categories SET cat_title='{$the_cat_title}' WHERE cat_id={$cat_id}";
-    $update_query=mysqli_query($connection,$query);
+    $the_cat_title=escape($_POST['cat_title']);//same title the_cat_title is taken here
+    //$the_cat_id=escape($_POST['cat_id']);
 
-    if(!$update_query){
+    $stmt=mysqli_prepare($connection,"UPDATE categories SET cat_title=? WHERE cat_id=?");
+    mysqli_stmt_bind_param($stmt,'si',$the_cat_title,$cat_id);
+    mysqli_stmt_execute($stmt);
+
+    if(!$stmt){
         die("QUERY FAILED" . mysqli_error($connection));
     }
+    mysqli_stmt_close($stmt);
+
+    header("Location: /cms-blog/admin/categories.php");
 
 }
 
