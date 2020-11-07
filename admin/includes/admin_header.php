@@ -51,6 +51,7 @@ if(!isset($_SESSION['user_role'])){
 
     <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
 
+    <script src="js/jquery.js"></script>
 </head>
 
 <body>

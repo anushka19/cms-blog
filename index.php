@@ -14,7 +14,7 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-
+            
             <?php
             $per_page=3;
 
@@ -35,15 +35,25 @@
                 $page_1=($page* $per_page)- $per_page;
             }
 
+            if(isset($_SESSION['user_role']) && $_SESSION['user_role']=='admin'){
+                $post_query_count="SELECT * FROM posts ";
 
+            }
+            else{
+                $post_query_count="SELECT * FROM posts WHERE post_status='published' ";
+            }
 
-            $post_query_count="SELECT * FROM posts";
+            //$post_query_count="SELECT * FROM posts WHERE post_status='published' ";
             $find_count=mysqli_query($connection,$post_query_count);
             $count=mysqli_num_rows($find_count);
 
+            if($count < 1){
+                echo"<h2 class='text-center'>No posts available</h2>";
+            }else{
+
             $count=ceil($count/ $per_page);
 
-            $query="SELECT * FROM posts WHERE post_status='published' LIMIT $page_1, $per_page ";
+            $query="SELECT * FROM posts WHERE post_status='published' ORDER BY post_id DESC LIMIT $page_1, $per_page ";
             $select_all_posts_query=mysqli_query($connection,$query);
 
                     while($row=mysqli_fetch_assoc($select_all_posts_query)) {
@@ -55,7 +65,7 @@
                         $post_content=substr($row['post_content'], 0,400);
                         $post_status= $row['post_status'];
 
-                        // if($post_status!=='published'){
+                        //if($post_status!=='published'){
 
                         //     echo "<h1 class='text-center'>NO POST SORRY</h1>";
 
@@ -67,14 +77,8 @@
 
 
             ?>
-
-
-                <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
-
                 <!-- First Blog Post -->
+                <h1></h1>
                 <!-- <h1> echo $count; ?></h1> -->
                 <h2>
                     <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
@@ -95,10 +99,10 @@
                 <hr>
                 
                   
-            <?php }   //} ?>
+            <?php } }?>
 
                
-
+            
             </div>
 
 
