@@ -1,13 +1,68 @@
+
 <?php
+
+function imagePlaceholder($image=''){
+    if(!$image){
+        return 'travelworld2.jpg';
+    }else{
+        return $image;
+    }
+}
+function currentUser(){
+
+    if(isset($_SESSION['username'])){
+
+        return $_SESSION['username'];
+    }
+
+    return false;
+}
 
 function redirect($location){
 
-    header("Location :" .$location);
+
+    header("Location:" . $location);
     exit;
 
 }
 
-function()
+
+function ifItIsMethod($method=null){
+
+    if($_SERVER['REQUEST_METHOD'] == strtoupper($method)){
+
+        return true;
+
+    }
+
+    return false;
+
+}
+
+
+function isLoggedIn(){
+
+    if(isset($_SESSION['user_role'])){
+
+        return true;
+
+
+    }
+
+
+   return false;
+
+}
+
+function checkIfUserIsLoggedInAndRedirect($redirectLocation=null){
+
+    if(isLoggedIn()){
+
+        redirect($redirectLocation);
+
+    }
+
+}
 
 
 function escape($string){
@@ -186,6 +241,7 @@ function username_exists($username){
 function email_exists($email){
     global $connection;
 
+    //$query = "SELECT user_email FROM users WHERE user_email = '$email'";
     $query = "SELECT user_email FROM users WHERE user_email = '$email'";
     $result = mysqli_query($connection, $query);
     confirmQuery($result);
@@ -245,7 +301,7 @@ function login_user($username,$password){
         $db_user_lastname=$row['user_lastname'];
         $db_user_role=$row['user_role'];
 
-    }
+    
 
 // $password=crypt($password,$db_user_password);//converting back
 
@@ -269,11 +325,13 @@ if (session_status() === PHP_SESSION_NONE)
      header("Location: /cms-blog/admin/index.php");
     } else {
  
+        return false;
  
- 
-        header("Location: ../index.php");
+        //header("Location: ../index.php");
     }
+  }
 
+  return true;
 
 }
 

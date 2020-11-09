@@ -1,3 +1,9 @@
+<?php //include "admin/functions.php"; ?>
+
+<?php require_once ('admin/functions.php'); ?>
+
+
+
 <!-- Navigation -->
 
 <nav class="navbar navbar-inverse navbar-fixed-top navbar-dark bg-dark" role="navigation">
@@ -26,14 +32,40 @@
                         echo "<li ><a class='' data-toggle='pills' aria-selected='true' href='/cms-blog/category/{$cat_id}'>{$cat_title}</a></li>";
                     }
 
-                    ?>
-                    
-                    <li>
-                        <a href="/cms-blog/admin">Admin</a>
-                    </li>
-                    <li>
-                        <a href="/cms-blog/registration">Registration</a>
-                    </li>
+             ?>
+
+    <?php if (session_status() === PHP_SESSION_NONE) 
+    session_start(); ?>
+    
+                                <?php if(isLoggedIn()): ?>
+
+
+                                <li>
+                                    <a href="/cms-blog/admin">Admin</a>
+                                </li>
+
+                                <li>
+                                    <a href="/cms-blog/includes/logout.php">Logout</a>
+                                </li>
+
+
+                                <?php else: ?>
+
+
+                                <li>
+                                    <a href="/cms-blog/login.php">Login</a>
+                                </li>
+                                <li>
+                                <a href="/cms-blog/registration">Registration</a>
+                                </li>
+
+                                <?php endif; ?>
+
+
+
+
+         
+                                
 
                     <li>
                         <a href="/cms-blog/contact">Contact</a>

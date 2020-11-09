@@ -1,10 +1,14 @@
+<?php ob_start(); ?>
 <?php include "includes/db.php";?>
+<?php  //include "admin/functions.php"; ?>
+<?php  require_once ('admin/functions.php'); ?>
 
 <!-- Header -->
 <?php include "includes/header.php";?>
 
 <!-- Navigation -->
 <?php include "includes/navigation.php";?>
+
 
     
     <!-- Page Content -->
@@ -90,7 +94,7 @@
                 <hr>
 
                 <a href="post.php?p_id=<?php echo $post_id; ?>">
-                <img class="img-responsive" src="/cms-blog/images/<?php echo $post_image; ?>" alt="">
+                <img class="img-responsive" src="/cms-blog/images/<?php echo imagePlaceholder($post_image); ?>" alt="">
                 </a>
                 <hr>
                 <p><?php echo $post_content; ?></p>

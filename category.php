@@ -5,7 +5,9 @@
 
 <!-- Navigation -->
 <?php include "includes/navigation.php";?>
-<?php include "./admin/functions.php";?>
+<?php //include "admin/functions.php";?>
+<?php  require_once ('admin/functions.php'); ?>
+
 
     
     <!-- Page Content -->
@@ -83,10 +85,10 @@
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span><?php echo $post_date; ?></p>
                 <hr>
-                <img class="img-responsive" src="/cms-blog/images/<?php echo $post_image; ?>" alt="">
+                <img class="img-responsive" src="/cms-blog/images/<?php echo imagePlaceholder($post_image); ?>" alt="">
                 <hr>
                 <p><?php echo $post_content; ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-primary" href="/cms-blog/post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
                 

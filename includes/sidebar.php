@@ -1,4 +1,32 @@
+<?php if (session_status() === PHP_SESSION_NONE) 
+session_start(); ?>
 
+<?php
+
+if(ifItIsMethod('post')){
+
+    if(isset($_POST['login'])){
+
+        if(isset($_POST['username']) && isset($_POST['password'])){
+
+            login_user($_POST['username'], $_POST['password']);
+    
+    
+        }else {
+    
+            redirect('/cms-blog/index');
+            
+        }
+
+    }
+
+    
+
+}
+
+
+
+?>
 <div class="col-md-4">
 
 <?php
@@ -7,7 +35,7 @@
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
-                    <form action="" method="post" class="search-form">
+                    <form action="search.php" method="post" class="search-form">
                     <div class="input-group">
                         <input name="search" type="text" class="form-control">
                         <span class="input-group-btn">
@@ -31,7 +59,7 @@
 
                 <?php else: ?>
                     <h4>Login</h4>
-                    <form action="includes/login.php" method="post">
+                    <form action="" method="post">
                     <div class="form-group">
                         <input name="username" type="text" class="form-control" placeholder="Enter Username">
                     </div>
@@ -42,6 +70,13 @@
                         <button class="btn btn-primary" name="login" type="submit">Submit</button>
                         
                         </span>
+                    </div>
+
+                    <div class="form-group">
+
+                        <a href="forgot.php?forgot=<?php echo uniqid(true); ?>">Forgot Password</a>
+
+
                     </div>
                     </form> <!-- search form--> 
                     <!-- /.input-group -->

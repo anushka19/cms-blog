@@ -1,0 +1,12 @@
+{
+    "name": "anush/cms-blog",
+    "authors": [
+        {
+            "name": "Anushka",
+            "email": "anushkabommakanty@gmail.com"
+        }
+    ],
+    "require": {
+        "pusher/pusher-php-server": "^4.1"
+    }
+}
